@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace SandmanUniversity.Ui.Data
+namespace SandmanUniversity.Data
 {
     public class Course
     {

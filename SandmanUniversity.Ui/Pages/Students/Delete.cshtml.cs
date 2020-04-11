@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using SandmanUniversity.Ui.Data;
+using SandmanUniversity.Data;
 
 namespace SandmanUniversity.Ui.Pages.Students
 {
     public class DeleteModel : PageModel
     {
-        private readonly SandmanUniversity.Ui.Data.SchoolContext _context;
+        private readonly SchoolContext _context;
 
-        public DeleteModel(SandmanUniversity.Ui.Data.SchoolContext context)
+        public DeleteModel(SchoolContext context)
         {
             _context = context;
         }

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace SandmanUniversity.Ui.Data
+namespace SandmanUniversity.Data
 {
     public class Student
     {

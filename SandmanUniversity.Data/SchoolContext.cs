@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 
-namespace SandmanUniversity.Ui.Data
+namespace SandmanUniversity.Data
 {
     public class SchoolContext : DbContext
     {

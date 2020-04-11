@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.29926.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SandmanUniversity.Ui", "SandmanUniversity.Ui\SandmanUniversity.Ui.csproj", "{6265DFEE-69C9-4BA0-8433-0AF282BD7E76}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SandmanUniversity.Data", "SandmanUniversity.Data\SandmanUniversity.Data.csproj", "{9EFB43D2-1915-47D9-8B8D-FD9546A404F6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{6265DFEE-69C9-4BA0-8433-0AF282BD7E76}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6265DFEE-69C9-4BA0-8433-0AF282BD7E76}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6265DFEE-69C9-4BA0-8433-0AF282BD7E76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9EFB43D2-1915-47D9-8B8D-FD9546A404F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9EFB43D2-1915-47D9-8B8D-FD9546A404F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9EFB43D2-1915-47D9-8B8D-FD9546A404F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9EFB43D2-1915-47D9-8B8D-FD9546A404F6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

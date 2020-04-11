@@ -1,19 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using SandmanUniversity.Ui.Data;
+using SandmanUniversity.Data;
 
 namespace SandmanUniversity.Ui.Pages.Students
 {
     public class CreateModel : PageModel
     {
-        private readonly SandmanUniversity.Ui.Data.SchoolContext _context;
+        private readonly SchoolContext _context;
 
-        public CreateModel(SandmanUniversity.Ui.Data.SchoolContext context)
+        public CreateModel(SchoolContext context)
         {
             _context = context;
         }

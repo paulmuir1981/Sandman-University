@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Linq;
 
-namespace SandmanUniversity.Ui.Data
+namespace SandmanUniversity.Data
 {
     public static class DbInitializer
     {

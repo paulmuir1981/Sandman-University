@@ -1,4 +1,4 @@
-﻿namespace SandmanUniversity.Ui.Data
+﻿namespace SandmanUniversity.Data
 {
     public enum Grade
     {
