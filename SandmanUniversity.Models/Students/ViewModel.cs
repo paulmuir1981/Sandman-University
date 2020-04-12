@@ -14,7 +14,5 @@ namespace SandmanUniversity.Models.Students
         [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         [Display(Name = "Enrollment Date")]
         public DateTime EnrollmentDate { get; set; }
-        [Display(Name = "Enrollments Count")]
-        public int EnrollmentsCount { get; set; }
     }
 }
