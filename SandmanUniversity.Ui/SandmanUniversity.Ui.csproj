@@ -5,11 +5,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="7.0.0" />
+    <PackageReference Include="MediatR" Version="8.0.1" />
+    <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="8.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.2" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SandmanUniversity.Data\SandmanUniversity.Data.csproj" />
+    <ProjectReference Include="..\SandmanUniversity.Commands\SandmanUniversity.Commands.csproj" />
+    <ProjectReference Include="..\SandmanUniversity.Models\SandmanUniversity.Models.csproj" />
+    <ProjectReference Include="..\SandmanUniversity.Profiles\SandmanUniversity.Profiles.csproj" />
+    <ProjectReference Include="..\SandmanUniversity.Queries\SandmanUniversity.Queries.csproj" />
   </ItemGroup>
 
 </Project>

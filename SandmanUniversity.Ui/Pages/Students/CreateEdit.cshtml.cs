@@ -11,13 +11,13 @@ using SandmanUniversity.Queries.Students;
 
 namespace SandmanUniversity.Ui.Pages.Students
 {
-    public class DeleteModel : PageModel
+    public class CreateEdit : PageModel
     {
-        private readonly ILogger<DeleteModel> _logger;
+        private readonly ILogger<CreateEdit> _logger;
         private readonly IMediator _mediator;
         private readonly IMapper _mapper;
 
-        public DeleteModel(ILogger<DeleteModel> logger, IMediator mediator, IMapper mapper)
+        public CreateEdit(ILogger<CreateEdit> logger, IMediator mediator, IMapper mapper)
         {
             _logger = logger;
             _mediator = mediator;
@@ -25,12 +25,10 @@ namespace SandmanUniversity.Ui.Pages.Students
         }
 
         [BindProperty]
-        public DeleteViewModel Student { get; set; }
-        public string ErrorMessage { get; set; }
+        public CreateEditViewModel Student { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(DeleteQuery query, bool? saveChangesError = false)
+        public async Task<IActionResult> OnGetAsync(CreateEditQuery query)
         {
-            _logger?.LogDebug("'{0}' has been invoked", nameof(OnGetAsync));
             if (ModelState.IsValid)
             {
                 Student = await _mediator.Send(query);
@@ -40,17 +38,11 @@ namespace SandmanUniversity.Ui.Pages.Students
             {
                 return NotFound();
             }
-
-            if (saveChangesError.GetValueOrDefault())
-            {
-                ErrorMessage = "Delete failed. Try again";
-            }
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync()
         {
-            _logger?.LogDebug("'{0}' has been invoked", nameof(OnPostAsync));
             if (!ModelState.IsValid)
             {
                 return Page();
@@ -58,12 +50,18 @@ namespace SandmanUniversity.Ui.Pages.Students
 
             try
             {
-                await _mediator.Send(_mapper.Map(Student, new DeleteCommand()));
+                await _mediator.Send(_mapper.Map(Student, new CreateEditCommand()));
             }
-            catch (DbUpdateException /* ex */)
+            catch (DbUpdateConcurrencyException)
             {
-                //Log the error (uncomment ex variable name and write a log.)
-                return RedirectToAction("./Delete", new { Student.Id, saveChangesError = true });
+                //if (!StudentExists(Student.Id))
+                //{
+                //    return NotFound();
+                //}
+                //else
+                //{
+                throw;
+                //}
             }
 
             return RedirectToPage("./Index");

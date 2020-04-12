@@ -26,7 +26,7 @@ namespace SandmanUniversity.Ui
 
                 try
                 {
-                    var context = services.GetRequiredService<SchoolContext>(); 
+                    var context = services.GetRequiredService<SchoolContext>();
                     DbInitializer.Initialize(context);
                 }
                 catch (Exception ex)

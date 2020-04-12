@@ -1,25 +1,38 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using SandmanUniversity.Data;
+using SandmanUniversity.Queries.Students;
+using SandmanUniversity.Models.Students;
+using Microsoft.Extensions.Logging;
 
 namespace SandmanUniversity.Ui.Pages.Students
 {
     public class IndexModel : PageModel
     {
-        private readonly SchoolContext _context;
+        private readonly ILogger<IndexModel> _logger;
+        private readonly IMediator _mediator;
 
-        public IndexModel(SchoolContext context)
+        public IndexModel(ILogger<IndexModel> logger, IMediator mediator)
         {
-            _context = context;
+            _logger = logger;
+            _mediator = mediator;
         }
 
-        public IList<Student> Student { get;set; }
+        public PaginatedViewModel Students { get; set; }
 
-        public async Task OnGetAsync()
+        public async Task OnGetAsync(
+            string sortOrder, 
+            string currentFilter, 
+            string searchString, 
+            int? pageIndex)
         {
-            Student = await _context.Students.ToListAsync();
+            _logger?.LogDebug("'{0}' has been invoked", nameof(OnGetAsync));
+            Students = await _mediator.Send(new PaginatedQuery { 
+                CurrentFilter = currentFilter, 
+                PageIndex = pageIndex, 
+                SearchString = searchString, 
+                SortOrder = sortOrder 
+            });
         }
     }
 }

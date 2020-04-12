@@ -1,10 +1,16 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using MediatR;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using SandmanUniversity.Data;
+using AutoMapper;
+using SandmanUniversity.Profiles;
+using SandmanUniversity.Queries.Students;
+using System.Reflection;
+using SandmanUniversity.Commands.Students;
 
 namespace SandmanUniversity.Ui
 {
@@ -21,9 +27,9 @@ namespace SandmanUniversity.Ui
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddRazorPages();
-
-            services.AddDbContext<SchoolContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
+            services.AddDbContext<SchoolContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SchoolContext")));
+            services.AddAutoMapper(typeof(StudentProfile));
+            services.AddMediatR(typeof(PaginatedQuery), typeof(DeleteCommand));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

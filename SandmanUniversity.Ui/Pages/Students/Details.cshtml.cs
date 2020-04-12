@@ -1,30 +1,33 @@
 ﻿using System.Threading.Tasks;
+using MediatR;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore;
-using SandmanUniversity.Data;
+using Microsoft.Extensions.Logging;
+using SandmanUniversity.Models.Students;
+using SandmanUniversity.Queries.Students;
 
 namespace SandmanUniversity.Ui.Pages.Students
 {
     public class DetailsModel : PageModel
     {
-        private readonly SchoolContext _context;
+        private readonly ILogger<DetailsModel> _logger;
+        private readonly IMediator _mediator;
 
-        public DetailsModel(SchoolContext context)
+        public DetailsModel(ILogger<DetailsModel> logger, IMediator mediator)
         {
-            _context = context;
+            _logger = logger;
+            _mediator = mediator;
         }
 
-        public Student Student { get; set; }
+        public DetailsViewModel Student { get; set; }
 
-        public async Task<IActionResult> OnGetAsync(int? id)
+        public async Task<IActionResult> OnGetAsync(DetailsQuery query)
         {
-            if (id == null)
+            _logger?.LogDebug("'{0}' has been invoked", nameof(OnGetAsync));
+            if (ModelState.IsValid)
             {
-                return NotFound();
+                Student = await _mediator.Send(query);
             }
-
-            Student = await _context.Students.FirstOrDefaultAsync(m => m.Id == id);
 
             if (Student == null)
             {
