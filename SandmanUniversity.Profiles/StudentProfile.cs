@@ -2,6 +2,8 @@
 using SandmanUniversity.Commands.Students;
 using SandmanUniversity.Data;
 using SandmanUniversity.Models.Students;
+using System;
+using System.Linq;
 
 namespace SandmanUniversity.Profiles
 {
@@ -15,8 +17,8 @@ namespace SandmanUniversity.Profiles
             CreateMap<Student, DeleteViewModel>();
             CreateMap<CreateEditViewModel, CreateEditCommand>();
             CreateMap<DeleteViewModel, DeleteCommand>();
-            //CreateMap<IGrouping<DateTime, Student>, EnrollmentDateGroupViewModel>()
-            //    .ForMember(model => model.EnrollmentDate, conf => conf.MapFrom(grouping => grouping.Key));
+            CreateMap<IGrouping<DateTime, Student>, EnrollmentDateViewModel>()
+                .ForMember(model => model.EnrollmentDate, conf => conf.MapFrom(grouping => grouping.Key));
         }
     }
 }

@@ -1,0 +1,31 @@
+﻿@page
+@model SandmanUniversity.Ui.Pages.AboutModel
+
+@{
+    ViewData["Title"] = "Student Body Statistics";
+}
+
+<h2>@ViewData["Title"]</h2>
+
+<table>
+    <tr>
+        <th>
+            Enrollment Date
+        </th>
+        <th class="text-right">
+            Students
+        </th>
+    </tr>
+
+    @foreach (var item in Model.EnrollmentDates)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.EnrollmentDate)
+            </td>
+            <td class="text-right">
+                @item.Count
+            </td>
+        </tr>
+    }
+</table>
