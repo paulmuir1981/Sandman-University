@@ -2,10 +2,10 @@
 @model SandmanUniversity.Ui.Pages.Students.CreateEdit
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = Model.Student.Id.HasValue ? "Edit" : "Create";
 }
 
-<h1>Edit</h1>
+<h1>@ViewData["Title"]</h1>
 
 <h4>Student</h4>
 <hr />

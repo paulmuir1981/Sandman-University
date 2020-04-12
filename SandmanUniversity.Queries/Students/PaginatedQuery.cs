@@ -32,7 +32,7 @@ namespace SandmanUniversity.Queries.Students
             _configuration = configuration;
         }
 
-        public async Task<PaginatedViewModel> Handle(PaginatedQuery request, CancellationToken token = default)
+        public async Task<PaginatedViewModel> Handle(PaginatedQuery request, CancellationToken cancellationToken = default)
         {
             _logger?.LogDebug("'{0}' has been invoked", nameof(Handle));
             var model = new PaginatedViewModel
@@ -80,7 +80,7 @@ namespace SandmanUniversity.Queries.Students
             int pageNumber = request.PageIndex ?? 1;
             model.Results = await students
                 .ProjectTo<ViewModel>(_configuration)
-                .PaginatedListAsync(pageNumber, pageSize, token);
+                .PaginatedListAsync(pageNumber, pageSize, cancellationToken);
 
             _logger?.LogInformation("Students have been retrieved successfully.");
             return model;

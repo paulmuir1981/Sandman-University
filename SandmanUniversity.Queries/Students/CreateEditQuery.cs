@@ -26,14 +26,14 @@ namespace SandmanUniversity.Queries.Students
             _mapper = mapper;
         }
 
-        public async Task<CreateEditViewModel> Handle(CreateEditQuery request, CancellationToken token = default)
+        public async Task<CreateEditViewModel> Handle(CreateEditQuery request, CancellationToken cancellationToken = default)
         {
             _logger?.LogDebug("'{0}' has been invoked", nameof(Handle));
             var model = new CreateEditViewModel();
 
             if (request.Id.HasValue)
             {
-                model = _mapper.Map(await _context.Students.FindByKeyValueAsync(request.Id, token), model);
+                model = _mapper.Map(await _context.Students.FindByKeyValueAsync(request.Id, cancellationToken), model);
             }
             return model;
         }

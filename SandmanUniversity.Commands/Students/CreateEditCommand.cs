@@ -30,14 +30,14 @@ namespace SandmanUniversity.Commands.Students
             _context = context;
         }
 
-        public async Task<int> Handle(CreateEditCommand request, CancellationToken token = default)
+        public async Task<int> Handle(CreateEditCommand request, CancellationToken cancellationToken = default)
         {
             _logger?.LogDebug("'{0}' has been invoked", nameof(Handle));
 
             var entry = null as EntityEntry<Student>;
             if (request.Id > 0)
             {
-                var student = await _context.Students.FindByKeyValueAsync(request.Id, token);
+                var student = await _context.Students.FindByKeyValueAsync(request.Id, cancellationToken);
 
                 if (student != null)
                 {
@@ -50,7 +50,7 @@ namespace SandmanUniversity.Commands.Students
             }
                 
             entry?.CurrentValues.SetValues(request);
-            await _context.SaveChangesAsync(token);
+            await _context.SaveChangesAsync(cancellationToken);
             return entry?.Entity.Id ?? 0;
         }
     }

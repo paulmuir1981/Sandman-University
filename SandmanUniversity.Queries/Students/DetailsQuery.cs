@@ -29,7 +29,7 @@ namespace SandmanUniversity.Queries.Students
             _configuration = configuration;
         }
 
-        public async Task<DetailsViewModel> Handle(DetailsQuery request, CancellationToken token = default)
+        public async Task<DetailsViewModel> Handle(DetailsQuery request, CancellationToken cancellationToken = default)
         {
             _logger?.LogDebug("'{0}' has been invoked", nameof(Handle));
             return await _context.Students
@@ -37,7 +37,7 @@ namespace SandmanUniversity.Queries.Students
                 .ThenInclude(e => e.Course)
                 .AsNoTracking()
                 .ProjectTo<DetailsViewModel>(_configuration)
-                .FirstOrDefaultAsync(m => m.Id == request.Id, token);
+                .FirstOrDefaultAsync(m => m.Id == request.Id, cancellationToken);
         }
     }
 }

@@ -22,15 +22,15 @@ namespace SandmanUniversity.Commands.Students
             _context = context;
         }
 
-        public async Task<bool> Handle(DeleteCommand request, CancellationToken token = default)
+        public async Task<bool> Handle(DeleteCommand request, CancellationToken cancellationToken = default)
         {
             _logger?.LogDebug("'{0}' has been invoked", nameof(Handle));
-            var student = await _context.Students.FindByKeyValueAsync(request.Id, token);
+            var student = await _context.Students.FindByKeyValueAsync(request.Id, cancellationToken);
             var result = false;
             if (student != null)
             {
                 _context.Students.Remove(student);
-                result = await _context.SaveChangesAsync(token) > 0;
+                result = await _context.SaveChangesAsync(cancellationToken) > 0;
             }
             return result;
         }

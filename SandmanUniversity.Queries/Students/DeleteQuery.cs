@@ -28,10 +28,10 @@ namespace SandmanUniversity.Queries.Students
             _mapper = mapper;
         }
 
-        public async Task<DeleteViewModel> Handle(DeleteQuery request, CancellationToken token = default)
+        public async Task<DeleteViewModel> Handle(DeleteQuery request, CancellationToken cancellationToken = default)
         {
             _logger?.LogDebug("'{0}' has been invoked", nameof(Handle));
-            return _mapper.Map(await _context.Students.FindByKeyValueAsync(request.Id, token), new DeleteViewModel());
+            return _mapper.Map(await _context.Students.FindByKeyValueAsync(request.Id, cancellationToken), new DeleteViewModel());
         }
     }
 }
