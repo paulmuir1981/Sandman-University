@@ -4,14 +4,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SandmanUniversity.Data
 {
-    public class Student
+    public class Instructor
     {
         public int Id { get; set; }
         [StringLength(50)]
         public string LastName { get; set; }
         [StringLength(50)]
         public string FirstName { get; set; }
-        public DateTime EnrollmentDate { get; set; }
-        public ICollection<Enrollment> Enrollments { get; set; }
+        public DateTime HireDate { get; set; }
+        public ICollection<CourseAssignment> CourseAssignments { get; set; }
+        public OfficeAssignment OfficeAssignment { get; set; }
     }
 }
