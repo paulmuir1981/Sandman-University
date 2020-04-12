@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Sandman.Extensions;
 using SandmanUniversity.Data;
@@ -32,6 +33,7 @@ namespace SandmanUniversity.Queries.Students
 
             return await _context
                 .Students
+                .AsNoTracking()
                 .GroupBy(x => x.EnrollmentDate)
                 .ProjectToListAsync<EnrollmentDateViewModel>(_configuration, cancellationToken);
         }

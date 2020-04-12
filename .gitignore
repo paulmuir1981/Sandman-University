@@ -15,3 +15,4 @@ SandmanUniversity.Profiles/bin/
 SandmanUniversity.Profiles/obj/
 SandmanUniversity.Queries/bin/
 SandmanUniversity.Queries/obj/
+*.user

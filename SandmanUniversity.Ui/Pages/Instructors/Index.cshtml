@@ -1,0 +1,125 @@
+﻿@page "{id:int?}"
+@model SandmanUniversity.Ui.Pages.Instructors.IndexModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<p>
+    <a asp-page="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Last Name</th>
+            <th>First Name</th>
+            <th>Hire Date</th>
+            <th>Office</th>
+            <th>Courses</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model.IndexViewModel.Instructors)
+        {
+            string selectedRow = "";
+            if (item.Id == Model.IndexViewModel.InstructorId)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td>
+                    @Html.DisplayFor(modelItem => item.LastName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FirstName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.HireDate)
+                </td>
+                <td>
+                    @if (item.OfficeAssignmentLocation != null)
+                    {
+                        @item.OfficeAssignmentLocation
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (var course in item.CourseAssignments)
+                        {
+                            @course.CourseId @:  @course.CourseTitle <br />
+                        }
+                    }
+                </td>
+                <td>
+                    <a asp-page="./Index" asp-route-id="@item.Id">Select</a> |
+                    <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+@if (Model.IndexViewModel.InstructorId.HasValue)
+{
+    <h3>Courses Taught by Selected Instructor</h3>
+    <table class="table">
+        <tr>
+            <th class="text-right">Number</th>
+            <th>Title</th>
+            <th>Department</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model.IndexViewModel.Courses)
+        {
+            string selectedRow = "";
+            if (item.Id == Model.IndexViewModel.CourseId)
+            {
+                selectedRow = "table-success";
+            }
+            <tr class="@selectedRow">
+                <td class="text-right">
+                    @item.Id
+                </td>
+                <td>
+                    @item.Title
+                </td>
+                <td>
+                    @item.DepartmentName
+                </td>
+                <td>
+                    <a asp-page="./Index" asp-route-id="@Model.IndexViewModel.InstructorId" asp-route-courseId="@item.Id">Select</a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+    @if (Model.IndexViewModel.CourseId.HasValue)
+    {
+        <h3>
+            Students Enrolled in Selected Course
+        </h3>
+        <table class="table">
+            <tr>
+                <th>Name</th>
+                <th>Grade</th>
+            </tr>
+            @foreach (var item in Model.IndexViewModel.Enrollments)
+            {
+                <tr>
+                    <td>
+                        @item.StudentFullName
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Grade)
+                    </td>
+                </tr>
+            }
+        </table>
+    }
+}

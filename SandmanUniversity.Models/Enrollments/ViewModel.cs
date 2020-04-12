@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Text.Json.Serialization;
 
 namespace SandmanUniversity.Models.Enrollments
 {
@@ -8,5 +9,9 @@ namespace SandmanUniversity.Models.Enrollments
         public string CourseTitle { get; set; }
         [DisplayFormat(NullDisplayText = "No grade")]
         public string Grade { get; set; }
+        public string StudentLastName { get; set; }
+        public string StudentFirstName { get; set; }
+        [JsonIgnore]
+        public string StudentFullName => StudentLastName + ", " + StudentFirstName;
     }
 }
